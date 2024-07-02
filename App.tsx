@@ -1,118 +1,100 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import React, { useState } from 'react';
+import { StyleSheet, Text, TextInput, Button, View } from 'react-native';
+import { weightedStrings } from './src/WeightedStrings';
+import { isBalanced } from './src/BalancedBrackets';
+import { highestPalindrome } from './src/HighestPalindrome';
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+export default function App() {
+    const [input, setInput] = useState<string>('');
+    const [queries, setQueries] = useState<string>('');
+    const [k, setK] = useState<string>('');
+    const [result, setResult] = useState<string>('');
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+    const handleWeightedStrings = () => {
+        const queryArray = queries.split(',').map(Number);
+        const res = weightedStrings(input, queryArray);
+        setResult(res.join(', '));
+    };
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
+    const handleBalancedBrackets = () => {
+        const res = isBalanced(input);
+        setResult(res);
+    };
 
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
+    const handleHighestPalindrome = () => {
+        const res = highestPalindrome(input, parseInt(k, 10));
+        setResult(res);
+    };
 
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+    return (
+        <View style={styles.container}>
+            <Text style={styles.title}>Weighted Strings</Text>
+            <TextInput
+                style={styles.input}
+                placeholder="Enter string"
+                value={input}
+                onChangeText={setInput}
+            />
+            <TextInput
+                style={styles.input}
+                placeholder="Enter queries (comma separated)"
+                value={queries}
+                onChangeText={setQueries}
+            />
+            <Button title="Check Weighted Strings" onPress={handleWeightedStrings} />
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+            <Text style={styles.title}>Balanced Brackets</Text>
+            <TextInput
+                style={styles.input}
+                placeholder="Enter string"
+                value={input}
+                onChangeText={setInput}
+            />
+            <Button title="Check Balanced Brackets" onPress={handleBalancedBrackets} />
 
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+            <Text style={styles.title}>Highest Palindrome</Text>
+            <TextInput
+                style={styles.input}
+                placeholder="Enter string"
+                value={input}
+                onChangeText={setInput}
+            />
+            <TextInput
+                style={styles.input}
+                placeholder="Enter k"
+                value={k}
+                onChangeText={setK}
+            />
+            <Button title="Check Highest Palindrome" onPress={handleHighestPalindrome} />
+
+            <Text style={styles.result}>Result: {result}</Text>
         </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
+    );
 }
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 20,
+    },
+    title: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginTop: 20,
+    },
+    input: {
+        height: 40,
+        borderColor: 'gray',
+        borderWidth: 1,
+        marginTop: 10,
+        width: '100%',
+        paddingLeft: 8,
+    },
+    result: {
+        marginTop: 20,
+        fontSize: 18,
+    },
 });
-
-export default App;
