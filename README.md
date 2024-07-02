@@ -59,21 +59,16 @@ Now that you have successfully run the app, let's modify it.
 
 You've successfully run and modified your React Native App. :partying_face:
 
-### Now what?
+## Task No.2 
+Balanced Bracket Problem
+This project includes a function to determine whether a string of brackets is balanced. The function handles various types of brackets including parentheses '()', square brackets '[]', and curly braces '{}'. The solution uses a stack to ensure that every opening bracket has a corresponding closing bracket of the same type, and the brackets are nested properly.
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+Complexity Analysis
+Time Complexity: O(n)
 
-# Troubleshooting
+The function iterates through each character in the input string exactly once, resulting in a linear time complexity relative to the length of the string.
+Each operation within the loop (checking the character, pushing to the stack, popping from the stack) takes constant time O(1).
+Space Complexity: O(n)
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+In the worst-case scenario, the stack may hold all opening brackets encountered in the input string, leading to a linear space complexity relative to the number of opening brackets.
 
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
